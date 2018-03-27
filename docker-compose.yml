@@ -12,6 +12,8 @@ services:
 
   app:
     image: dotnet-example
+    depends_on:
+      - db
     volumes:
       - /app
       - /etc/nginx/conf.d/
@@ -26,7 +28,7 @@ services:
       POSTGRES_PASSWORD: test
     volumes:
       - db:/var/lib/postgresql/data
-      
+
 volumes:
   db:
     driver: local
