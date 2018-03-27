@@ -5,10 +5,13 @@ services:
     image: nginx:1.12-alpine
     ports:
       - 80:80
-    volumes:
-      - ./nginx/:/etc/nginx/conf.d/:ro
     depends_on:
+      - app
+    volumes_from:
       - app
 
   app:
     image: dotnet-example
+    volumes:
+      - /app
+      - /etc/nginx/conf.d/
