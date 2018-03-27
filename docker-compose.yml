@@ -1,7 +1,14 @@
 version: '2'
 
 services:
-  app:
-    image: dotnet-example
+  web:
+    image: nginx:1.12-alpine
     ports:
       - 80:80
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/:ro
+    depends_on:
+      - app
+
+  app:
+    image: dotnet-example
