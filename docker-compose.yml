@@ -15,3 +15,19 @@ services:
     volumes:
       - /app
       - /etc/nginx/conf.d/
+  
+  db:
+    image: postgres:10.3-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+    volumes:
+      - db:/var/lib/postgresql/data
+      
+volumes:
+  db:
+    driver: local
+
